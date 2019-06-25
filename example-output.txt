@@ -1,0 +1,11 @@
+subject: bob
+tester: rob
+session: 2
+masker: /Users/basset/Documents/maxdetection/Stimuli/Masker/L1L2_EngEng.wav
+targets: /Users/basset/Documents/Lalonde/Lalonde-coordinate-response/Seth Mars Attack
+masker level (dB SPL): 65
+starting SNR (dB): 10
+condition: audio-visual
+
+SNR (dB), correct number, subject number, correct color, subject color, evaluation, reversals
+10, 3, 5, green, white, incorrect, 0
