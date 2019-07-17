@@ -1,0 +1,5 @@
+up: 1 1
+down: 2 2
+reversals per step size: 2 8
+step sizes (dB): 4 2
+

@@ -9,6 +9,30 @@
 \pagestyle{fancy}
 \usepackage{listings}
 \usepackage{lastpage}
+\usepackage{xcolor}
+
+\colorlet{punctuationColor_}{red!60!black}
+\definecolor{backgroundColor_}{HTML}{EEEEEE}
+\definecolor{delimiterColor_}{RGB}{20,105,176}
+
+\lstdefinelanguage{txt}{
+    basicstyle=\normalfont\ttfamily,
+    numbers=left,
+    numberstyle=\scriptsize,
+    stepnumber=1,
+    numbersep=8pt,
+    showstringspaces=false,
+    breaklines=true,
+    frame=lines,
+    backgroundcolor=\color{backgroundColor_},
+    literate=
+      {:}{{{\color{punctuationColor_}{:}}}}{1}
+      {,}{{{\color{punctuationColor_}{,}}}}{1}
+      {\{}{{{\color{delimiterColor_}{\{}}}}{1}
+      {\}}{{{\color{delimiterColor_}{\}}}}}{1}
+      {[}{{{\color{delimiterColor_}{[}}}}{1}
+      {]}{{{\color{delimiterColor_}{]}}}}{1},
+}
 
 \setlength{\topmargin}{-.5in}
 \setlength{\textheight}{9in}
@@ -36,7 +60,11 @@ Seth Bashford
 \end{itemize}
 
 \section{Description}
-This project provides a macOS application for running an audio-visual coordinate response measure test. The experimenter selects a number of testing parameters prior to starting the test as shown in Figure~\ref{fig:test-setup-window}.
+This project provides a macOS application for running an audio-visual coordinate response measure test. 
+
+\subsection{Setup}
+The experimenter selects a number of testing parameters prior to starting the test as shown in Figure~\ref{fig:test-setup-window}. The masker is any audio file. Targets are a collection of audio files contained in a directory. The target files are filtered to those having extensions of \textit{.mov}, \textit{.avi} or \textit{.wav}. The file names are expected in a form like \textit{blue3.mov} or \textit{green8-2.mov}.  For the ``adaptive closed set'' method the track settings should be specified. The track settings file is a text file containing the adaptive tracking rule for SNR. Listing~\ref{lst:example-track-settings} shows an example for a rule of 1-up, 2-down for 2 reversals at a step size of 4 dB followed by 8 reversals at a step size of 2 dB. The SNR is limited to -40 to 20 dB. An ``auditory-only" condition does not show the target video.
+
 \begin{figure}
 \centering
 \includegraphics[width = 0.9\linewidth]{test-setup-window.png}
@@ -44,39 +72,50 @@ This project provides a macOS application for running an audio-visual coordinate
 \label{fig:test-setup-window}
 \end{figure}
 
-The subject initiates each trial by pressing a button on a window located on the secondary screen/monitor. Figure~\ref{fig:subject-ready-window} shows the screen the subject sees before beginning a trial.
+\noindent\begin{minipage}{\textwidth}
+\lstinputlisting[
+    language=txt,
+    label={lst:example-track-settings},
+    caption={example track settings file}
+]{track-settings.txt}
+\end{minipage}
+
+
+\subsection{Procedure}
+The test consists of a set of trials. The subject initiates the first trial by pressing a button on a window located on the secondary screen/monitor. Figure~\ref{fig:subject-ready-window} shows the window the subject sees before beginning a trial. Each trial begins with the playback of a random section of the masker. The masker fades in for 0.5 seconds. After the masker finishes fading in a randomly selected target stimulus is played in conjunction with the masker. Figure~\ref{fig:target-stimulus} shows such an example target stimulus.
+If the tester specifies an ``auditory-only" condition the target video is not shown. For the ``adaptive closed set" method the target is played at a level dictated by the adaptive tracking rule. A level of 119 dB SPL corresponds to a signal having a rms equivalent to that of a full-scale square wave. The targets are chosen with delayed replacement so that no two consecutive targets are the same. After the target finishes playing the masker fades out for 0.5 seconds. Once the masker has finished fading out the subject window is populated with 4 rows of 8 colored-number buttons whose colors are green, red, blue and white as shown in Figure~\ref{fig:subject-response-window}. The subject then presses the button corresponding to the number and color instructed by the target. The response is evaluated by analyzing the file name of the target. For the ``adaptive closed set" method a correct response decreases the target level whereas an incorrect response increases the target level. The test concludes when either the adaptive method is complete or, for ``fixed level closed set" method, 30 trials are completed.
+
 \begin{figure}
 \centering
 \includegraphics[width = 0.9\linewidth]{subject-ready-window.png}
 \caption{subject window before trial}
 \label{fig:subject-ready-window}
 \end{figure}
-Each trial begins with the playback of a random section of a masker where the masker is an audio file chosen by the tester prior to the start of the test. The masker fades in for 0.5 seconds to a level specified by the tester. After the masker finishes fading in a randomly selected target stimulus is played in conjunction with the masker where the target is chosen among a collection of audio files contained in a directory specified by the tester. Figure~\ref{fig:target-stimulus} shows such an example target stimulus.
+
 \begin{figure}
 \centering
 \includegraphics[width = 0.9\linewidth]{target-stimulus.png}
 \caption{target stimulus}
 \label{fig:target-stimulus}
 \end{figure}
-The target files are filtered to those having extensions of \textit{.mov}, \textit{.avi} or \textit{.wav}. If the tester specifies an “auditory-only” condition the target video is not shown. The target is played at a level dictated by an adaptive tracking rule of 1-up, 1-down for 2 reversals at a step size of 4 dB followed by 6 reversals at a step size of 2 dB. The initial target level is specified by the tester. A level of 119 dB SPL corresponds to a signal having a rms equivalent to that of a full-scale square wave. The targets are chosen with delayed replacement so that no two consecutive targets are the same. After the target finishes playing the masker fades out for 0.5 seconds. Once the masker has finished fading out the subject window is populated with 4 rows of 8 colored-number buttons whose colors are green, red, blue and white as shown in Figure~\ref{fig:subject-response-window}. 
+
 \begin{figure}
 \centering
 \includegraphics[width = 0.9\linewidth]{subject-response-window.png}
 \caption{subject window when responding}
 \label{fig:subject-response-window}
 \end{figure}
-The subject then presses the button corresponding to the number and color instructed by the target. The response is evaluated by analyzing the file name of the target. The file names are expected in a form like \textit{blue3.mov}. A correct response decreases the target level whereas an incorrect response increases the target level.
 
-The test concludes when the target level tracking rule is complete. The results of the test are written to a text file located at \textit{~/Documents/AVCoordinatedResponseMeasureResults}. The name of the file is like \textit{Subject\_wilfred\_Session\_123\_Experimenter\_456\_2018-6-24-10-30-0.txt}. The output file contains a record of trial-by-trial information as well as test parameters. Listing~\ref{lst:example-output-file} shows such an output file.
+\subsection{Output}
+The results of the test are written to a text file located at \textit{\string~/Documents/AVCoordinateResponseMeasureResults}. The name of the file is like \textit{Subject\_wilfred\_Session\_123\_Experimenter\_456\_2018-6-24-10-30-0.txt}. The output file contains a record of trial-by-trial information as well as test parameters. Listing~\ref{lst:example-output-file} shows such an output file.
+
+\noindent\begin{minipage}{\textwidth}
 \lstinputlisting[
-    basicstyle={\small\ttfamily},
-    breaklines,
+    language=txt,
     label={lst:example-output-file},
-    caption={example output file},
-    captionpos=b
+    caption={example output file}
 ]{example-output.txt}
-
-All random selections are governed by a common Mersenne Twister engine seeded at application run-time.
+\end{minipage}
 
 \section{PI Name(s)}
 Kaylah Lalonde
@@ -86,6 +125,7 @@ Development of audiovisual speech enhancement in children
 
 \section{Dev Timeline}
 March 2019 - May 2019: Developing software
+July 2019: Adding features
 
 \section{Technical Requirements}
 \begin{itemize}
