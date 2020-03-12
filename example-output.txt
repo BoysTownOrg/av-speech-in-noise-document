@@ -1,11 +1,16 @@
 subject: bob
-tester: rob
-session: 2
-masker: /Users/basset/Documents/maxdetection/Stimuli/Masker/L1L2_EngEng.wav
-targets: /Users/basset/Documents/Lalonde/Lalonde-coordinate-response/Seth Mars Attack
+tester: jim
+session: 1
+method: adaptive pass fail
+masker: /Users/lab/Documents/audio.wav
+targets: /Users/lab/Documents/videos
 masker level (dB SPL): 65
 starting SNR (dB): 10
 condition: audio-visual
 
-SNR (dB), correct number, subject number, correct color, subject color, evaluation, reversals
-10, 3, 5, green, white, incorrect, 0
+SNR (dB), target, evaluation, reversals
+5, blue3_1-27ao.mov, correct, 0
+5, blue4_2-27ao.mov, correct, 0
+1, blue1_1-27ao.mov, incorrect, 1
+5, blue4_2-27ao.mov, correct, 1
+5, blue3_1-27ao.mov, correct, 2

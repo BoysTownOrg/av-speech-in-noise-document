@@ -16,6 +16,8 @@
 \definecolor{backgroundColor_}{HTML}{EEEEEE}
 \definecolor{delimiterColor_}{RGB}{20,105,176}
 
+\newcommand{\mytilde}{\raise.17ex\hbox{$\scriptstyle\mathtt{\sim}$}}
+
 \lstdefinelanguage{txt}{
     basicstyle=\normalfont\ttfamily,
     numbers=left,
@@ -139,7 +141,7 @@ A test consists of several trials. Depending on the test method specified either
 \end{figure}
 
 \section{Output}
-The results of the test are written to a text file located at \textit{\string~/Documents/AVCoordinateResponseMeasureResults}. The name of the file is like \textit{Subject\_wilfred\_Session\_123\_Experimenter\_456\_2018-6-24-10-30-0.txt}. The output file contains a record of trial-by-trial information as well as test parameters. Listing~\ref{lst:example-output-file} shows such an output file.
+The results of the test are written to a plaintext file located under \texttt{\mytilde/Documents/AVCoordinateResponseMeasureResults}. The name of the file is like \texttt{Subject\_wilfred\_Session\_123\_Experimenter\_456\_2018-6-24-10-30-0.txt}. The output file contains test settings and a record of trial-by-trial information. Listing~\ref{lst:example-output-file} shows such an output file.
 
 \noindent\begin{minipage}{\textwidth}
 \lstinputlisting[
