@@ -77,15 +77,21 @@ The following describes each test setting.
 \end{equation}
 where \texttt{L} is the masker level.
 \subsection{starting SNR (dB)}
-\texttt{starting SNR (dB)} specifies the starting target playback level relative to the masker level. \textbf{The target audio files are assumed to have an equivalent RMS to the masker audio file}.
+\texttt{starting SNR (dB)} specifies the starting target playback level relative to the masker level. \textbf{Each target audio file is assumed to have an equivalent RMS to the masker audio file}.
 \subsection{condition}
 \texttt{condition} is one of \texttt{auditory-only} or \texttt{audio-visual}. An \texttt{audio-visual} condition shows video content.
 \subsection{method}
+\texttt{method} specifies test behavior. A description of each option follows.
 \subsubsection{adaptive pass fail}
+\texttt{adaptive pass fail} specifies an adaptive test where the tester clicks pass or fail for each trial.
 \subsubsection{adaptive number keywords}
+\texttt{adaptive number keywords} specifies an adaptive test where the tester enters a number for each trial. A number of two or more registers a correct response.
 \subsubsection{adaptive CRM}
+\texttt{adaptive CRM} specifies an adaptive test where the subject responds using a colored number grid for each trial.
 \subsubsection{adaptive CRM not spatial}
+\texttt{adaptive CRM not spatial} is equivalent to \texttt{adaptive CRM} but both target and masker audio is limited to one channel.
 \subsubsection{adaptive CRM spatial}
+\texttt{adaptive CRM spatial} is equivalent to \texttt{adaptive CRM} but target audio is limited to one channel and the first masker audio channel is delayed by 4 milliseconds.
 \subsubsection{fixed-level free response with replacement}
 \subsubsection{fixed-level CRM with replacement}
 \subsubsection{fixed-level free response silent intervals}
