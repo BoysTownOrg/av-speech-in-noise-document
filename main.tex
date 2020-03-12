@@ -10,6 +10,7 @@
 \usepackage{listings}
 \usepackage{lastpage}
 \usepackage{xcolor}
+\usepackage{amsmath}
 
 \colorlet{punctuationColor_}{red!60!black}
 \definecolor{backgroundColor_}{HTML}{EEEEEE}
@@ -46,7 +47,7 @@
 \begin{document}
 \vspace*{30ex}
 \begin{center}
-\textbf{Audiovisual Coordinate Response Measure Test}\\
+\textbf{AV Speech in Noise}\\
 \vspace{4ex}
 Seth Bashford
 \end{center}
@@ -54,16 +55,47 @@ Seth Bashford
 \tableofcontents
 \pagebreak
 
-\section{Goals}
-\begin{itemize}
-\item Develop a macOS application for design and administration of a coordinate response measure test
-\end{itemize}
+\section{Test Setup}
+The application opens to the test setup window shown in Figure~\ref{fig:test-setup-window}. The experimenter browses for a test settings file, a plaintext file used for test configuration. An example is shown in Listing~\ref{lst:example-test-settings} .
 
-\section{Description}
-This project provides a macOS application for running an audio-visual coordinate response measure test. 
-
-\subsection{Setup}
-The experimenter selects a number of testing parameters prior to starting the test as shown in Figure~\ref{fig:test-setup-window}. The masker is any audio file. Targets are a collection of audio files contained in a directory. The target files are filtered to those having extensions of \textit{.mov}, \textit{.avi} or \textit{.wav}. The file names are expected in a form like \textit{blue3.mov} or \textit{green8-2.mov}.  For the ``adaptive closed set'' method the track settings should be specified. The track settings file is a text file containing the adaptive tracking rule for SNR. Listing~\ref{lst:example-track-settings} shows an example for a rule of 1-up, 2-down for 2 reversals at a step size of 4 dB followed by 8 reversals at a step size of 2 dB. The SNR is limited to -40 to 20 dB. An ``auditory-only" condition does not show the target video.
+\noindent\begin{minipage}{\textwidth}
+	\lstinputlisting[
+	language=txt,
+	label={lst:example-test-settings},
+	caption={example test settings file}
+	]{example-settings.txt}
+\end{minipage}
+The following describes each test setting.
+\subsection{targets}
+\texttt{targets} specifies a directory containing audio files used for target selection. Only files having extensions of \texttt{.mov}, \texttt{.avi} or \texttt{.wav} are considered. For a coordinate response measure test the file names are expected in a form like \texttt{blue3.mov} or \texttt{green8-2.mov}.
+\subsection{masker}
+\texttt{masker} specifies an audio file used for masking.
+\subsection{masker level (dB SPL)}
+\texttt{masker level (dB SPL)} specifies masker playback level. The audio file samples ${\displaystyle \{x_{1}, x_{2}, \dots , x_{n}\}}$ are scaled by
+\begin{equation}
+ \frac{10^{\frac{L-119}{20}}}{\sqrt{\frac{1}{N}\sum_{n=1}^{N}x_{n}^{2}}}\label{eq:masker-scale}
+\end{equation}
+where \texttt{L} is the masker level.
+\subsection{starting SNR (dB)}
+\texttt{starting SNR (dB)} specifies the starting target playback level relative to the masker level. \textbf{The target audio files are assumed to have an equivalent RMS to the masker audio file}.
+\subsection{condition}
+\texttt{condition} is one of \texttt{auditory-only} or \texttt{audio-visual}. An \texttt{audio-visual} condition shows video content.
+\subsection{method}
+\subsubsection{adaptive pass fail}
+\subsubsection{adaptive number keywords}
+\subsubsection{adaptive CRM}
+\subsubsection{adaptive CRM not spatial}
+\subsubsection{adaptive CRM spatial}
+\subsubsection{fixed-level free response with replacement}
+\subsubsection{fixed-level CRM with replacement}
+\subsubsection{fixed-level free response silent intervals}
+\subsubsection{fixed-level CRM silent intervals}
+\subsubsection{fixed-level free response all stimuli}
+\subsection{up}
+\subsection{down}
+\subsection{reversals per step size}
+\subsection{step sizes (dB)}
+For the ``adaptive closed set'' method the track settings should be specified. The track settings file is a text file containing the adaptive tracking rule for SNR. Listing~\ref{lst:example-track-settings} shows an example for a rule of 1-up, 2-down for 2 reversals at a step size of 4 dB followed by 8 reversals at a step size of 2 dB. The SNR is limited to -40 to 20 dB. An ``auditory-only" condition does not show the target video.
 
 \begin{figure}
 \centering
@@ -81,7 +113,7 @@ The experimenter selects a number of testing parameters prior to starting the te
 \end{minipage}
 
 
-\subsection{Procedure}
+\section{Procedure}
 The test consists of a set of trials. The subject initiates the first trial by pressing a button on a window located on the secondary screen/monitor. Figure~\ref{fig:subject-ready-window} shows the window the subject sees before beginning a trial. Each trial begins with the playback of a random section of the masker. The masker fades in for 0.5 seconds. After the masker finishes fading in a randomly selected target stimulus is played in conjunction with the masker. Figure~\ref{fig:target-stimulus} shows such an example target stimulus.
 If the tester specifies an ``auditory-only" condition the target video is not shown. For the ``adaptive closed set" method the target is played at a level dictated by the adaptive tracking rule. A level of 119 dB SPL corresponds to a signal having a rms equivalent to that of a full-scale square wave. The targets are chosen with delayed replacement so that no two consecutive targets are the same. After the target finishes playing the masker fades out for 0.5 seconds. Once the masker has finished fading out the subject window is populated with 4 rows of 8 colored-number buttons whose colors are green, red, blue and white as shown in Figure~\ref{fig:subject-response-window}. The subject then presses the button corresponding to the number and color instructed by the target. The response is evaluated by analyzing the file name of the target. For the ``adaptive closed set" method a correct response decreases the target level whereas an incorrect response increases the target level. The test concludes when either the adaptive method is complete or, for ``fixed level closed set" method, 30 trials are completed.
 
@@ -106,7 +138,7 @@ If the tester specifies an ``auditory-only" condition the target video is not sh
 \label{fig:subject-response-window}
 \end{figure}
 
-\subsection{Output}
+\section{Output}
 The results of the test are written to a text file located at \textit{\string~/Documents/AVCoordinateResponseMeasureResults}. The name of the file is like \textit{Subject\_wilfred\_Session\_123\_Experimenter\_456\_2018-6-24-10-30-0.txt}. The output file contains a record of trial-by-trial information as well as test parameters. Listing~\ref{lst:example-output-file} shows such an output file.
 
 \noindent\begin{minipage}{\textwidth}
@@ -116,28 +148,5 @@ The results of the test are written to a text file located at \textit{\string~/D
     caption={example output file}
 ]{example-output.txt}
 \end{minipage}
-
-\section{PI Name(s)}
-Kaylah Lalonde
-
-\section{Grant and/or Project Name}
-Development of audiovisual speech enhancement in children
-
-\section{Dev Timeline}
-March 2019 - May 2019: Developing software
-July 2019: Adding features
-
-\section{Technical Requirements}
-\begin{itemize}
-\item macOS
-\item Two monitors (preferred)
-\item Touch-enabled monitor (preferred)
-\item Audio output
-\end{itemize}
-
-\section{Keywords}
-macOS, AV, audiovisual, audio-visual, speech, masking, masker, adaptive track, perception, coordinate response measure
-
-\section{Associated Publications}
 
 \end{document}

@@ -1,0 +1,10 @@
+targets: /Users/bob/Documents/videos
+masker: /Users/bob/Documents/audio.wav
+masker level (dB SPL): 85
+starting SNR (dB): 5
+condition: audio-visual
+method: adaptive CRM
+up: 1 1
+down: 2 2
+reversals per step size: 2 6
+step sizes (dB): 4 2
