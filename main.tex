@@ -61,7 +61,7 @@ The application opens to the test setup window shown in Figure~\ref{fig:test-set
 	\caption{test setup window}
 	\label{fig:test-setup-window}
 \end{figure}
-The experimenter browses for test settings, a plaintext file used for test configuration. An example is shown in Listing~\ref{lst:example-test-settings}.
+The tester browses for test settings, a plaintext file used for test configuration. An example is shown in Listing~\ref{lst:example-test-settings}.
 
 \noindent\begin{minipage}{\textwidth}
 	\lstinputlisting[
@@ -76,7 +76,7 @@ Each setting is printed on its own line. The order of settings does not matter. 
 \subsection{masker}
 \texttt{masker} specifies an audio file used for masking.
 \subsection{masker level (dB SPL)}
-\texttt{masker level (dB SPL)} specifies masker playback level. Each audio file sample ${\displaystyle \{x_{1}, x_{2}, \dots , x_{n}\}}$ is scaled by
+\texttt{masker level (dB SPL)} specifies masker playback level. Each audio file sample ${\displaystyle \{x_{1}, x_{2}, \dots , x_{N}\}}$ is scaled by
 \begin{equation}
  \frac{10^{\frac{L-119}{20}}}{\sqrt{\frac{1}{N}\sum_{n=1}^{N}x_{n}^{2}}}\label{eq:masker-scale}
 \end{equation}
@@ -100,7 +100,7 @@ where \texttt{L} is the masker level.
 \subsubsection{fixed-level CRM with replacement}
 \texttt{fixed-level CRM with replacement} specifies a fixed-level test where the subject responds using a colored number grid for each trial. Targets are selected randomly with replacement but without consecutive selections. The test concludes after 30 trials.
 \subsubsection{fixed-level CRM silent intervals}
-\texttt{fixed-level CRM silent intervals} specifies a fixed-level test where the subject responds using a colored number grid for each trial. Targets are identified by four (400ms, 300ms, 200ms, 100ms) silent intervals. 30 targets are randomly selected for each interval as well 30 targets without = 5 * 30 = 150 stimuli = 150 trials
+\texttt{fixed-level CRM silent intervals} specifies a fixed-level test where the subject responds using a colored number grid for each trial. Targets are identified by four (400ms, 300ms, 200ms, 100ms) silent intervals. 30 targets are randomly selected for each interval as well as 30 targets without = 5 * 30 = 150 stimuli = 150 trials
 \subsubsection{fixed-level free response all stimuli}
 \texttt{fixed-level free response all stimuli} specifies a fixed-level test where the tester enters free responses using a text field. All targets are played once. The tester may flag a trial using a checkbox. A flagged trial is replayed at the end.
 \subsection{up}
@@ -112,11 +112,10 @@ where \texttt{L} is the masker level.
 \subsection{step sizes (dB)}
 \texttt{step sizes (dB)} specifies the SNR step sizes used for an adaptive test. The SNR is saturated at -40 and 20 dB.
 
-Listing~\ref{lst:example-test-settings} shows an example for a rule of 1-up, 2-down for 2 reversals at a step size of 4 dB followed by 8 reversals at a step size of 2 dB. The SNR is limited to -40 to 20 dB. An ``auditory-only" condition does not show the target video.
+Listing~\ref{lst:example-test-settings} shows an example for a rule of 1-up, 2-down for 2 reversals at a step size of 4 dB followed by 8 reversals at a step size of 2 dB.
 
 \section{Test Procedure}
-The test consists of a set of trials. The subject initiates the first trial by pressing a button on a window located on the secondary screen/monitor. Figure~\ref{fig:subject-ready-window} shows the window the subject sees before beginning a trial. Each trial begins with the playback of a random section of the masker. The masker fades in for 0.5 seconds. After the masker finishes fading in a randomly selected target stimulus is played in conjunction with the masker. Figure~\ref{fig:target-stimulus} shows such an example target stimulus.
-If the tester specifies an ``auditory-only" condition the target video is not shown. For the ``adaptive closed set" method the target is played at a level dictated by the adaptive tracking rule. A level of 119 dB SPL corresponds to a signal having a rms equivalent to that of a full-scale square wave. The targets are chosen with delayed replacement so that no two consecutive targets are the same. After the target finishes playing the masker fades out for 0.5 seconds. Once the masker has finished fading out the subject window is populated with 4 rows of 8 colored-number buttons whose colors are green, red, blue and white as shown in Figure~\ref{fig:subject-response-window}. The subject then presses the button corresponding to the number and color instructed by the target. The response is evaluated by analyzing the file name of the target. For the ``adaptive closed set" method a correct response decreases the target level whereas an incorrect response increases the target level. The test concludes when either the adaptive method is complete or, for ``fixed level closed set" method, 30 trials are completed.
+A test consists of several trials. Depending on the test method specified either the subject or the tester initiates each trial. For a CRM test the subject starts by pressing the button shown in Figure~\ref{fig:subject-ready-window} on the subject monitor. Each trial begins with a random section of the masker. After the masker fades in for 0.5 seconds the target is played. Figure~\ref{fig:target-stimulus} shows an example target for an \texttt{audio-visual} condition. After the target finishes playing the masker fades out for 0.5 seconds. Once the masker has finished fading out the response interface is shown. For a CRM test the subject window is populated with 4 rows of 8 colored-number buttons whose colors are green, red, blue and white as shown in Figure~\ref{fig:subject-response-window}. The subject presses the button corresponding to the number and color instructed by the target. The response is evaluated by analyzing the file name of the target.
 
 \begin{figure}
 \centering
