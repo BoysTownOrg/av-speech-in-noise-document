@@ -49,7 +49,7 @@
 \begin{document}
 \vspace*{30ex}
 \begin{center}
-\textbf{AV Speech in Noise}
+\textbf{AV Speech in Noise 3.2.0}
 \end{center}
 \pagebreak
 \tableofcontents
@@ -90,11 +90,11 @@ where \texttt{L} is the masker level.
 \subsection{method}
 \texttt{method} specifies test behavior. A description of each option follows.
 \subsubsection{adaptive pass fail}
-\texttt{adaptive pass fail} specifies an adaptive test where the tester clicks pass or fail for each trial.
+\texttt{adaptive pass fail} specifies an adaptive test where the tester clicks pass or fail for each trial. Targets are selected randomly with replacement but without consecutive selections.
 \subsubsection{adaptive number keywords}
-\texttt{adaptive number keywords} specifies an adaptive test where the tester enters a number for each trial. A number of two or more registers a correct response.
+\texttt{adaptive number keywords} specifies an adaptive test where the tester enters a number for each trial. A number of two or more registers a correct response. Targets are selected randomly without replacement.
 \subsubsection{adaptive CRM}
-\texttt{adaptive CRM} specifies an adaptive test where the subject responds using a colored number grid for each trial.
+\texttt{adaptive CRM} specifies an adaptive test where the subject responds using a colored number grid for each trial. Targets are selected randomly with replacement but without consecutive selections.
 \subsubsection{adaptive CRM not spatial}
 \texttt{adaptive CRM not spatial} is equivalent to \texttt{adaptive CRM} but both target and masker audio are limited to one channel.
 \subsubsection{adaptive CRM spatial}

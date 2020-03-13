@@ -2,11 +2,17 @@ subject: bob
 tester: jim
 session: 1
 method: adaptive pass fail
+RME setting: ?
+transducer: 1 speaker
 masker: /Users/lab/Documents/audio.wav
 targets: /Users/lab/Documents/videos
 masker level (dB SPL): 65
 starting SNR (dB): 10
 condition: audio-visual
+up: 1 1
+down: 2 2
+reversals per step size: 2 6
+step sizes (dB): 4 2
 
 SNR (dB), target, evaluation, reversals
 5, blue3_1-27ao.mov, correct, 0
