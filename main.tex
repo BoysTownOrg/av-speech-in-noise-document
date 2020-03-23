@@ -106,15 +106,15 @@ where \texttt{L} is the masker level.
 \subsubsection{fixed-level free response all stimuli}
 \texttt{fixed-level free response all stimuli} specifies a fixed-level test where the tester enters a free response for each trial. All targets are played once. The tester may flag a trial using a checkbox. A flagged trial is replayed at the end.
 \subsection{up}
-\texttt{up} specifies the SNR tracking rule for incorrect responses in an adaptive test.
+(\textit{This setting is only required for adaptive methods.}) \texttt{up} specifies the SNR tracking rule for incorrect responses in an adaptive test.
 \subsection{down}
-\texttt{down} specifies the SNR tracking rule for correct responses in an adaptive test.
+(\textit{This setting is only required for adaptive methods.}) \texttt{down} specifies the SNR tracking rule for correct responses in an adaptive test.
 \subsection{reversals per step size}
-\texttt{reversals per step size} specifies the reversals required to change step size for an adaptive test.
+(\textit{This setting is only required for adaptive methods.}) \texttt{reversals per step size} specifies the reversals required to change step size for an adaptive test.
 \subsection{step sizes (dB)}
-\texttt{step sizes (dB)} specifies the SNR step sizes used for an adaptive test. The SNR is saturated at -40 and 20 dB.
+(\textit{This setting is only required for adaptive methods.}) \texttt{step sizes (dB)} specifies the SNR step sizes used for an adaptive test. The SNR is saturated at -40 and 20 dB.
 \subsection{threshold}
-\texttt{threshold} specifies the number of final reversals averaged in determining threshold.
+(\textit{This setting is only required for adaptive methods.}) \texttt{threshold} specifies the number of final reversals averaged in determining threshold.
 
 \vspace{\baselineskip}
 Listing~\ref{lst:example-test-settings} shows an example for a rule of 1-up, 2-down for 2 reversals at a step size of 4 dB followed by 6 reversals at a step size of 2 dB.
