@@ -49,7 +49,7 @@
 \begin{document}
 \vspace*{30ex}
 \begin{center}
-\textbf{AV Speech in Noise 3.2.0}
+\textbf{AV Speech in Noise 3.3.0}
 \end{center}
 \pagebreak
 \tableofcontents
@@ -74,7 +74,7 @@ The tester browses for test settings, a plaintext file used for test configurati
 \end{minipage}
 Each setting is printed on its own line. The order of settings does not matter. The following describes each setting.
 \subsection{targets}
-\texttt{targets} specifies a directory containing audio files used for target selection. Only files having extensions of \texttt{.mov}, \texttt{.avi} or \texttt{.wav} are considered. For a coordinate response measure (CRM) test the file names are expected in a form like \texttt{blue3.mov} or \texttt{green8-2.mov}. For an adaptive test, if \texttt{targets} contains subdirectories then each subdirectory is adaptively tracked independently.
+\texttt{targets} specifies a directory containing audio and/or video files used for target selection. Only files having extensions of \texttt{.mov}, \texttt{.avi} or \texttt{.wav} are considered. For a coordinate response measure (CRM) test the file names are expected in a form like \texttt{blue3.mov} or \texttt{green8-2.mov}. For an adaptive test, if \texttt{targets} contains subdirectories then each subdirectory is adaptively tracked independently.
 \subsection{masker}
 \texttt{masker} specifies an audio file used for masking.
 \subsection{masker level (dB SPL)}
@@ -84,27 +84,27 @@ Each setting is printed on its own line. The order of settings does not matter. 
 \end{equation}
 where \texttt{L} is the masker level.
 \subsection{starting SNR (dB)}
-\texttt{starting SNR (dB)} specifies the starting target playback level relative to the masker level. For a fixed-level test this level applies to every target. \textbf{Each target audio file is assumed to have an equivalent RMS to the masker audio file}.
+\texttt{starting SNR (dB)} specifies the starting target playback level relative to the masker level. For a fixed-level test this level applies to every target. \textbf{Each target file is assumed to have an equivalent RMS to the masker file}.
 \subsection{condition}
-\texttt{condition} is one of \texttt{auditory-only} or \texttt{audio-visual}. An \texttt{audio-visual} condition shows video content.
+\texttt{condition} is one of \texttt{auditory-only} or \texttt{audio-visual}. An \texttt{audio-visual} condition shows target video content.
 \subsection{method}
 \texttt{method} specifies test behavior. A description of each option follows.
 \subsubsection{adaptive pass fail}
-\texttt{adaptive pass fail} specifies an adaptive test where the tester clicks correct or incorrect for each trial. Targets are selected randomly with replacement without consecutive selections.
+\texttt{adaptive pass fail} specifies an adaptive test where the tester clicks correct or incorrect for each trial. Targets are selected randomly with replacement without consecutive selection.
 \subsubsection{adaptive number keywords}
 \texttt{adaptive number keywords} specifies an adaptive test where the tester enters a number for each trial. A number of two or more registers a correct response. Targets are selected randomly without replacement.
 \subsubsection{adaptive CRM}
-\texttt{adaptive CRM} specifies an adaptive test where the subject responds using a colored number grid for each trial. Targets are selected randomly with replacement without consecutive selections.
+\texttt{adaptive CRM} specifies an adaptive test where the subject responds using a colored number grid for each trial. Targets are selected randomly with replacement without consecutive selection.
 \subsubsection{adaptive CRM not spatial}
 \texttt{adaptive CRM not spatial} is equivalent to \texttt{adaptive CRM} but both target and masker audio are limited to one channel.
 \subsubsection{adaptive CRM spatial}
 \texttt{adaptive CRM spatial} is equivalent to \texttt{adaptive CRM} but target audio is limited to one channel and the first masker audio channel is delayed by 4 milliseconds.
 \subsubsection{fixed-level CRM with replacement}
-\texttt{fixed-level CRM with replacement} specifies a fixed-level test where the subject responds using a colored number grid for each trial. Targets are selected randomly with replacement without consecutive selections. The test concludes after 30 trials.
+\texttt{fixed-level CRM with replacement} specifies a fixed-level test where the subject responds using a colored number grid for each trial. Targets are selected randomly with replacement without consecutive selection. The test concludes after 30 trials.
 \subsubsection{fixed-level CRM silent intervals}
 \texttt{fixed-level CRM silent intervals} specifies a fixed-level test where the subject responds using a colored number grid for each trial. Targets are identified by four (400ms, 300ms, 200ms, 100ms) silent intervals. 30 targets are randomly selected for each interval as well as 30 targets without = 5 * 30 = 150 targets = 150 trials
 \subsubsection{fixed-level free response all stimuli}
-\texttt{fixed-level free response all stimuli} specifies a fixed-level test where the tester enters free responses using a text field. All targets are played once. The tester may flag a trial using a checkbox. A flagged trial is replayed at the end.
+\texttt{fixed-level free response all stimuli} specifies a fixed-level test where the tester enters a free response for each trial. All targets are played once. The tester may flag a trial using a checkbox. A flagged trial is replayed at the end.
 \subsection{up}
 \texttt{up} specifies the SNR tracking rule for incorrect responses in an adaptive test.
 \subsection{down}
@@ -113,12 +113,14 @@ where \texttt{L} is the masker level.
 \texttt{reversals per step size} specifies the reversals required to change step size for an adaptive test.
 \subsection{step sizes (dB)}
 \texttt{step sizes (dB)} specifies the SNR step sizes used for an adaptive test. The SNR is saturated at -40 and 20 dB.
+\subsection{threshold}
+\texttt{threshold} specifies the number of final reversals averaged in determining threshold.
 
 \vspace{\baselineskip}
 Listing~\ref{lst:example-test-settings} shows an example for a rule of 1-up, 2-down for 2 reversals at a step size of 4 dB followed by 6 reversals at a step size of 2 dB.
 
 \section{Test Procedure}
-A test consists of several trials. Depending on the test method specified either the subject or the tester initiates each trial. For a CRM test the subject starts by pressing the button shown in Figure~\ref{fig:subject-ready-window} on the subject monitor. Each trial begins with a random section of the masker. After the masker fades in for 0.5 seconds the target is played. Figure~\ref{fig:target-stimulus} shows an example target for an \texttt{audio-visual} condition. After the target finishes playing the masker fades out for 0.5 seconds. Once the masker has finished fading out the response interface is shown. For a CRM test the subject window is populated with 4 rows of 8 colored-number buttons whose colors are green, red, blue and white as shown in Figure~\ref{fig:subject-response-window}. The subject presses the button corresponding to the number and color instructed by the target. The response is evaluated by analyzing the file name of the target.
+A test consists of several trials. Depending on the test method specified either the subject or the tester initiates each trial. For a CRM test the subject starts by pressing the button shown in Figure~\ref{fig:subject-ready-window} on the subject monitor. Each trial begins with a random section of the masker. After the masker fades in for 0.5 seconds the target is played. Figure~\ref{fig:target-stimulus} shows an example target for an \texttt{audio-visual} condition. After the target finishes playing the masker fades out for 0.5 seconds. Once the masker has finished fading out the response interface is shown. For a CRM test the subject window is populated with 4 rows of 8 colored number buttons whose colors are green, red, blue and white as shown in Figure~\ref{fig:subject-response-window}. The subject presses the button corresponding to the number and color instructed by the target. The response is evaluated by analyzing the file name of the target.
 
 \begin{figure}
 \centering

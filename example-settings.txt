@@ -8,3 +8,4 @@ up: 1 1
 down: 2 2
 reversals per step size: 2 6
 step sizes (dB): 4 2
+threshold: 6
