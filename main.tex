@@ -49,7 +49,7 @@
 \begin{document}
 \vspace*{30ex}
 \begin{center}
-\textbf{AV Speech in Noise 3.3.0}
+\textbf{AV Speech in Noise 3.4.0}
 \end{center}
 \pagebreak
 \tableofcontents
@@ -63,7 +63,7 @@ The application opens to the test setup window shown in Figure~\ref{fig:test-set
 	\caption{test setup window}
 	\label{fig:test-setup-window}
 \end{figure}
-The tester browses for test settings, a plaintext file used for test configuration. An example is shown in Listing~\ref{lst:example-test-settings}.
+The tester browses for \texttt{test settings}, a plaintext file used for test configuration. An example is shown in Listing~\ref{lst:example-test-settings}.
 
 \noindent\begin{minipage}{\textwidth}
 	\lstinputlisting[
@@ -83,8 +83,6 @@ Each setting is printed on its own line. The order of settings does not matter. 
  \frac{10^{\frac{L-119}{20}}}{\sqrt{\frac{1}{N}\sum_{n=1}^{N}x_{n}^{2}}}\label{eq:masker-scale}
 \end{equation}
 where \texttt{L} is the masker level.
-\subsection{starting SNR (dB)}
-\texttt{starting SNR (dB)} specifies the starting target playback level relative to the masker level. For a fixed-level test this level applies to every target. \textbf{Each target file is assumed to have an equivalent RMS to the masker file}.
 \subsection{condition}
 \texttt{condition} is one of \texttt{auditory-only} or \texttt{audio-visual}. An \texttt{audio-visual} condition shows target video content.
 \subsection{method}
@@ -118,6 +116,8 @@ where \texttt{L} is the masker level.
 
 \vspace{\baselineskip}
 Listing~\ref{lst:example-test-settings} shows an example for a rule of 1-up, 2-down for 2 reversals at a step size of 4 dB followed by 6 reversals at a step size of 2 dB.
+
+\texttt{starting SNR (dB)} specifies the starting target playback level relative to the masker level. For a fixed-level test this level applies to every target. \textbf{Each target file is assumed to have an equivalent RMS to the masker file}.
 
 \section{Test Procedure}
 A test consists of several trials. Depending on the test method specified either the subject or the tester initiates each trial. For a CRM test the subject starts by pressing the button shown in Figure~\ref{fig:subject-ready-window} on the subject monitor. Each trial begins with a random section of the masker. After the masker fades in for 0.5 seconds the target is played. Figure~\ref{fig:target-stimulus} shows an example target for an \texttt{audio-visual} condition. After the target finishes playing the masker fades out for 0.5 seconds. Once the masker has finished fading out the response interface is shown. For a CRM test the subject window is populated with 4 rows of 8 colored number buttons whose colors are green, red, blue and white as shown in Figure~\ref{fig:subject-response-window}. The subject presses the button corresponding to the number and color instructed by the target. The response is evaluated by analyzing the file name of the target.
