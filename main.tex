@@ -49,7 +49,7 @@
 \begin{document}
 \vspace*{30ex}
 \begin{center}
-\textbf{AV Speech in Noise 3.10.0}
+\textbf{AV Speech in Noise 3.12.1}
 \end{center}
 \pagebreak
 \tableofcontents
@@ -63,7 +63,7 @@ The application opens to the test setup window shown in Figure~\ref{fig:test-set
 	\caption{test setup window}
 	\label{fig:test-setup-window}
 \end{figure}
-The tester browses for \texttt{test settings}, a plaintext file used for test configuration. An example is shown in Listing~\ref{lst:example-test-settings}.
+The tester browses for \texttt{test settings}, a plaintext file used for test configuration. An example is shown in Listing~\ref{lst:example-test-settings}. \textbf{Settings specified in \texttt{test settings} take precedence over the corresponding settings in the setup window}.
 
 \noindent\begin{minipage}{\textwidth}
 	\lstinputlisting[
@@ -134,7 +134,7 @@ In the Facemask Study variant a limited number of text fields is shown in the se
 The missing settings (\texttt{tester ID}, \texttt{session}, \texttt{RME setting}, \texttt{transducer}) can be specified in the settings file. \texttt{Session file} is synonymous with \texttt{test settings}.
 
 \section{Test Procedure}
-A test consists of several trials. Depending on the test method specified either the subject or the tester initiates each trial. For a CRM or consonant test the subject starts by pressing the button shown in Figure~\ref{fig:subject-ready-window} on the subject monitor. Each trial begins with a random section of the masker. After the masker fades in for 0.5 seconds the target is played. Figure~\ref{fig:target-stimulus} shows an example target for an \texttt{audio-visual} condition. After the target finishes playing the masker fades out for 0.5 seconds. Once the masker has finished fading out the response interface is shown. For a CRM test the subject window is populated with 4 rows of 8 colored number buttons whose colors are green, red, blue and white as shown in Figure~\ref{fig:coordinate-response-window}. The subject presses the button corresponding to the number and color instructed by the target. For a consonant test the subject window is populated with a 3 x 4 grid of pictures as shown in Figure~\ref{fig:consonant-response-window}. The subject presses the button corresponding to the word instructed by the target. The response is evaluated by analyzing the file name of the target.
+A test consists of several trials. Depending on the test method specified either the subject or the tester initiates each trial. For a CRM or consonant test the subject starts by pressing the button shown in Figure~\ref{fig:subject-ready-window} on the subject monitor. Each trial begins with a random section of the masker. After the masker fades in for 20 milliseconds and presents a steady level for 166 milliseconds the target is played. Figure~\ref{fig:target-stimulus} shows an example target for an \texttt{audio-visual} condition. After the target finishes playing the masker presents a steady level for 166 milliseconds then fades out for 20 milliseconds. Once the masker has finished fading out the response interface is shown. For a CRM test the subject window is populated with 4 rows of 8 colored number buttons whose colors are green, red, blue and white as shown in Figure~\ref{fig:coordinate-response-window}. The subject presses the button corresponding to the number and color instructed by the target. For a consonant test the subject window is populated with a 3 x 4 grid of pictures as shown in Figure~\ref{fig:consonant-response-window}. The subject presses the button corresponding to the word instructed by the target. The response is evaluated by analyzing the file name of the target.
 
 \begin{figure}
 \centering
