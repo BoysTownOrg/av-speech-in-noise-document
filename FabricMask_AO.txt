@@ -1,0 +1,12 @@
+targets: ~/Documents/FaceMaskStimuli/targets/fabric
+masker: ~/Documents/FaceMaskStimuli/masker/SSN_longB.wav
+masker level (dB SPL): 70
+condition: auditory-only
+method: fixed-level consonants
+target repetitions: 1
+tester ID: in home
+session: 1
+RME setting: NA
+transducer: 2 speakers
+starting SNR (dB): 0
+meta: G

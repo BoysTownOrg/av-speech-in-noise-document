@@ -124,7 +124,7 @@ where \texttt{L} is the masker level.
 Listing~\ref{lst:example-test-settings} shows an example for a rule of 1-up, 2-down for 2 reversals at a step size of 4 dB followed by 6 reversals at a step size of 2 dB.
 
 \section{Facemask Study}
-In the Facemask Study variant a limited number of text fields is shown in the setup window as seen in Figure~\ref{fig:facemask-study}.
+In the Facemask Study variant a finite number of options appear in the setup window as seen in Figure~\ref{fig:facemask-study}.
 \begin{figure}
 	\centering
 	\includegraphics[width = 0.9\linewidth]{facemask-study.png}
@@ -173,6 +173,40 @@ The results of the test are written to a plaintext file located under \texttt{\m
     label={lst:example-output-file},
     caption={example output file}
 ]{example-output.txt}
+\end{minipage}
+
+\section{Appendix}
+
+\noindent\begin{minipage}{\textwidth}
+	\lstinputlisting[
+	language=txt,
+	label={lst:facemask-C-test-settings},
+	caption={"C" settings file}
+	]{ClearMask_AO.txt}
+\end{minipage}
+
+\noindent\begin{minipage}{\textwidth}
+	\lstinputlisting[
+	language=txt,
+	label={lst:facemask-D-test-settings},
+	caption={"D" settings file}
+	]{ClearMask_AV.txt}
+\end{minipage}
+
+\noindent\begin{minipage}{\textwidth}
+	\lstinputlisting[
+	language=txt,
+	label={lst:facemask-E-test-settings},
+	caption={"E" settings file}
+	]{CommunicatorMask_AO.txt}
+\end{minipage}
+
+\noindent\begin{minipage}{\textwidth}
+	\lstinputlisting[
+	language=txt,
+	label={lst:facemask-F-test-settings},
+	caption={"F" settings file}
+	]{CommunicatorMask_AV.txt}
 \end{minipage}
 
 \end{document}
