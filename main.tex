@@ -49,7 +49,7 @@
 \begin{document}
 \vspace*{30ex}
 \begin{center}
-\textbf{AV Speech in Noise 3.10.0}
+\textbf{AV Speech in Noise 3.12.1}
 \end{center}
 \pagebreak
 \tableofcontents
@@ -63,7 +63,7 @@ The application opens to the test setup window shown in Figure~\ref{fig:test-set
 	\caption{test setup window}
 	\label{fig:test-setup-window}
 \end{figure}
-The tester browses for \texttt{test settings}, a plaintext file used for test configuration. An example is shown in Listing~\ref{lst:example-test-settings}.
+The tester browses for \texttt{test settings}, a plaintext file used for test configuration. An example is shown in Listing~\ref{lst:example-test-settings}. \textbf{Settings specified in \texttt{test settings} take precedence over the corresponding settings in the setup window}.
 
 \noindent\begin{minipage}{\textwidth}
 	\lstinputlisting[
@@ -123,18 +123,8 @@ where \texttt{L} is the masker level.
 \vspace{\baselineskip}
 Listing~\ref{lst:example-test-settings} shows an example for a rule of 1-up, 2-down for 2 reversals at a step size of 4 dB followed by 6 reversals at a step size of 2 dB.
 
-\section{Facemask Study}
-In the Facemask Study variant a limited number of text fields is shown in the setup window as seen in Figure~\ref{fig:facemask-study}.
-\begin{figure}
-	\centering
-	\includegraphics[width = 0.9\linewidth]{facemask-study.png}
-	\caption{facemask study setup window}
-	\label{fig:facemask-study}
-\end{figure}
-The missing settings (\texttt{tester ID}, \texttt{session}, \texttt{RME setting}, \texttt{transducer}) can be specified in the settings file. \texttt{Session file} is synonymous with \texttt{test settings}.
-
 \section{Test Procedure}
-A test consists of several trials. Depending on the test method specified either the subject or the tester initiates each trial. For a CRM or consonant test the subject starts by pressing the button shown in Figure~\ref{fig:subject-ready-window} on the subject monitor. Each trial begins with a random section of the masker. After the masker fades in for 0.5 seconds the target is played. Figure~\ref{fig:target-stimulus} shows an example target for an \texttt{audio-visual} condition. After the target finishes playing the masker fades out for 0.5 seconds. Once the masker has finished fading out the response interface is shown. For a CRM test the subject window is populated with 4 rows of 8 colored number buttons whose colors are green, red, blue and white as shown in Figure~\ref{fig:coordinate-response-window}. The subject presses the button corresponding to the number and color instructed by the target. For a consonant test the subject window is populated with a 3 x 4 grid of pictures as shown in Figure~\ref{fig:consonant-response-window}. The subject presses the button corresponding to the word instructed by the target. The response is evaluated by analyzing the file name of the target.
+A test consists of several trials. Depending on the test method specified either the subject or the tester initiates each trial. For a CRM or consonant test the subject starts by pressing the button shown in Figure~\ref{fig:subject-ready-window} on the subject monitor. Each trial begins with a random section of the masker. After the masker fades in for 20 milliseconds and presents a steady level for 166 milliseconds the target is played. Figure~\ref{fig:target-stimulus} shows an example target for an \texttt{audio-visual} condition. After the target finishes playing the masker presents a steady level for 166 milliseconds then fades out for 20 milliseconds. Once the masker has finished fading out the response interface is shown. For a CRM test the subject window is populated with 4 rows of 8 colored number buttons whose colors are green, red, blue and white as shown in Figure~\ref{fig:coordinate-response-window}. The subject presses the button corresponding to the number and color instructed by the target. For a consonant test the subject window is populated with a 3 x 4 grid of pictures as shown in Figure~\ref{fig:consonant-response-window}. The subject presses the button corresponding to the word instructed by the target. The response is evaluated by analyzing the file name of the target.
 
 \begin{figure}
 \centering
@@ -173,6 +163,108 @@ The results of the test are written to a plaintext file located under \texttt{\m
     label={lst:example-output-file},
     caption={example output file}
 ]{example-output.txt}
+\end{minipage}
+
+\section{Facemask Study}
+In the Facemask Study variant a finite number of options appear in the setup window as seen in Figure~\ref{fig:facemask-study}.
+\begin{figure}
+	\centering
+	\includegraphics[width = 0.9\linewidth]{facemask-study.png}
+	\caption{facemask study setup window}
+	\label{fig:facemask-study}
+\end{figure}
+See the Appendix for details on each option.
+
+At the end of each test a pop-up window appears that says ``Condition complete, great work!" as seen in Figure~\ref{fig:facemask-condition-complete}.
+\begin{figure}
+	\centering
+	\includegraphics[width = 0.9\linewidth]{facemask-condition-complete.png}
+	\caption{facemask study pop-up window after completing condition}
+	\label{fig:facemask-condition-complete}
+\end{figure}
+
+The results of the test are written to a plaintext file located under \texttt{\mytilde/Desktop/check your data here}. The name of the file is like \texttt{conditionB\_bob\_2020-3-13-10-30-0.txt}.
+
+\section{Appendix}
+
+\noindent\begin{minipage}{\textwidth}
+	\lstinputlisting[
+	language=txt,
+	label={lst:facemask-A-test-settings},
+	caption={``A" settings file}
+	]{NoMask_AO.txt}
+\end{minipage}
+
+\noindent\begin{minipage}{\textwidth}
+	\lstinputlisting[
+	language=txt,
+	label={lst:facemask-B-test-settings},
+	caption={``B" settings file}
+	]{NoMask_AV.txt}
+\end{minipage}
+
+\noindent\begin{minipage}{\textwidth}
+	\lstinputlisting[
+	language=txt,
+	label={lst:facemask-C-test-settings},
+	caption={``C" settings file}
+	]{ClearMask_AO.txt}
+\end{minipage}
+
+\noindent\begin{minipage}{\textwidth}
+	\lstinputlisting[
+	language=txt,
+	label={lst:facemask-D-test-settings},
+	caption={``D" settings file}
+	]{ClearMask_AV.txt}
+\end{minipage}
+
+\noindent\begin{minipage}{\textwidth}
+	\lstinputlisting[
+	language=txt,
+	label={lst:facemask-E-test-settings},
+	caption={``E" settings file}
+	]{CommunicatorMask_AO.txt}
+\end{minipage}
+
+\noindent\begin{minipage}{\textwidth}
+	\lstinputlisting[
+	language=txt,
+	label={lst:facemask-F-test-settings},
+	caption={``F" settings file}
+	]{CommunicatorMask_AV.txt}
+\end{minipage}
+
+\noindent\begin{minipage}{\textwidth}
+	\lstinputlisting[
+	language=txt,
+	label={lst:facemask-G-test-settings},
+	caption={``G" settings file}
+	]{FabricMask_AO.txt}
+\end{minipage}
+
+\noindent\begin{minipage}{\textwidth}
+	\lstinputlisting[
+	language=txt,
+	label={lst:facemask-H-test-settings},
+	caption={``H" settings file}
+	]{FabricMask_AV.txt}
+\end{minipage}
+
+\noindent\begin{minipage}{\textwidth}
+	\lstinputlisting[
+	language=txt,
+	label={lst:facemask-I-test-settings},
+	caption={``I" settings file}
+	]{HospitalMask_AO.txt}
+\end{minipage}
+
+\noindent\begin{minipage}{\textwidth}
+	\lstinputlisting[
+	language=txt,
+	label={lst:facemask-J-test-settings},
+	caption={``J" settings file}
+	]{HospitalMask_AV.txt}
 \end{minipage}
 
 \end{document}
