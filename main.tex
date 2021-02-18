@@ -49,7 +49,7 @@
 \begin{document}
 \vspace*{30ex}
 \begin{center}
-\textbf{AV Speech in Noise 3.12.1}
+\textbf{AV Speech in Noise 4.0.0}
 \end{center}
 \pagebreak
 \tableofcontents
@@ -74,7 +74,31 @@ The tester browses for \texttt{test settings}, a plaintext file used for test co
 \end{minipage}
 Each setting is printed on its own line. The order of settings does not matter. The following describes each setting.
 \subsection{targets}
-\texttt{targets} specifies a directory containing audio and/or video files used for target selection. Only files having extensions of \texttt{.mov}, \texttt{.avi}, \texttt{.mp4} or \texttt{.wav} are considered. For a coordinate response measure (CRM) test the file names are expected in a form like \texttt{blue3.mov} or \texttt{green8-2.mov}. For a consonant test the file names are expected in a form like \texttt{choose\_zi\_2-25\_Clear.mp4} or \texttt{choose\_ti\_1-25\_Communicator.mp4}. For an adaptive test, if \texttt{targets} contains subdirectories then each subdirectory is adaptively tracked independently. A tilde (\mytilde) resolves to the users home directory, e.g. \texttt{/Users/username}.
+\texttt{targets} specifies a directory containing audio and/or video files used for target selection. A tilde (\mytilde) resolves to the users home directory, e.g. \texttt{/Users/username}. Only files having extensions of \texttt{.mov}, \texttt{.avi}, \texttt{.mp4} or \texttt{.wav} are considered. For an adaptive test, if \texttt{targets} contains subdirectories then each subdirectory is adaptively tracked independently.
+
+Tests that evaluate responses may determine correctness by analyzing the file names of each target. The following shows examples of file names that conform to the expected conventions.
+\begin{itemize}
+	\item coordinate response measure (CRM)
+	\begin{itemize}
+		\item \texttt{blue3.mov}
+		\item \texttt{green8-2.mov}
+	\end{itemize}
+	\item consonant
+	\begin{itemize}
+		\item \texttt{choose\_zi\_2-25\_Clear.mp4}
+		\item \texttt{choose\_ti\_1-25\_Communicator.mp4}
+	\end{itemize}
+	\item /i/ syllable
+	\begin{itemize}
+		\item \texttt{say\_bi\_1-25.mov}
+		\item \texttt{say\_di\_3-25ao.mov}
+	\end{itemize}
+	\item choose keywords
+	\begin{itemize}
+		\item \texttt{1 That kind of airplane is brown.mov}
+		\item \texttt{5 Tom won't pull the oar.mov}
+	\end{itemize}
+\end{itemize}
 \subsection{masker}
 \texttt{masker} specifies an audio file used for masking. A tilde (\mytilde) resolves to the users home directory, e.g. \texttt{/Users/username}.
 \subsection{masker level (dB SPL)}
@@ -106,7 +130,11 @@ where \texttt{L} is the masker level.
 \subsubsection{fixed-level free response all stimuli}
 \texttt{fixed-level free response all stimuli} specifies a fixed-level test where the tester enters a free response for each trial. All targets are played once. The tester may flag a trial using a checkbox. A flagged trial is replayed at the end.
 \subsubsection{fixed-level consonants}
-\texttt{fixed-level consonants} specifies a fixed-level test where the subject responds using a set of pictures for each trial. All targets are played \texttt{target repetitions} times in random order where no target will be played twice more than another at any point during the test. 
+\texttt{fixed-level consonants} specifies a fixed-level test where the subject responds using a set of pictures for each trial. All targets are played \texttt{target repetitions} times in random order where no target will be played twice more than another at any point during the test.
+\subsubsection{fixed-level choose keywords all stimuli}
+\texttt{fixed-level choose keywords all stimuli} specifies a fixed-level test where the tester selects incorrect keywords for each trial. All targets are played once.
+\subsubsection{fixed-level syllables all stimuli}
+\texttt{fixed-level syllables all stimuli} specifies a fixed-level test where the tester selects from representative letter(s) of /i/ syllables for each trial. All targets are played once.
 \subsection{target repetitions}
 (\textit{This setting only applies to fixed-level consonants.}) \texttt{target repetitions} specifies how many times each target is played. 
 \subsection{up}
