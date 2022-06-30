@@ -1,0 +1,3 @@
+/Users/bob/targets/nomask/choose_bi_1-25_NoMask.mp4
+/Users/bob/targets/fabric/choose_bi_3-25_FabricMask.mp4
+/Users/bob/targets/clear/choose_di_3-25_Clear.mp4

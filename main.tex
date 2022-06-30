@@ -49,7 +49,7 @@
 \begin{document}
 \vspace*{30ex}
 \begin{center}
-\textbf{AV Speech in Noise 4.0.0}
+\textbf{AV Speech in Noise 4.8.0}
 \end{center}
 \pagebreak
 \tableofcontents
@@ -74,7 +74,17 @@ The tester browses for \texttt{test settings}, a plaintext file used for test co
 \end{minipage}
 Each setting is printed on its own line. The order of settings does not matter. The following describes each setting.
 \subsection{targets}
-\texttt{targets} specifies a directory containing audio and/or video files used for target selection. A tilde (\mytilde) resolves to the users home directory, e.g. \texttt{/Users/username}. Only files having extensions of \texttt{.mov}, \texttt{.avi}, \texttt{.mp4} or \texttt{.wav} are considered. For an adaptive test, if \texttt{targets} contains subdirectories then each subdirectory is adaptively tracked independently.
+Normally, \texttt{targets} specifies a directory containing audio and/or video files used for target selection. A tilde (\mytilde) resolves to the users home directory, e.g. \texttt{/Users/username}. Only files having extensions of \texttt{.mov}, \texttt{.avi}, \texttt{.mp4} or \texttt{.wav} are considered. For an adaptive test, if \texttt{targets} contains subdirectories then each subdirectory is adaptively tracked independently.
+
+For test method \texttt{fixed-level free response predetermined stimuli audio recording}, \texttt{targets} is a plaintext file containing filepaths, one per line, of audio and/or video files. An example is shown in Listing~\ref{lst:example-predetermined-targets}.
+
+\noindent\begin{minipage}{\textwidth}
+	\lstinputlisting[
+	language=txt,
+	label={lst:example-predetermined-targets},
+	caption={example predetermined targets file}
+	]{example-predetermined-targets.txt}
+\end{minipage}
 
 Tests that evaluate responses may determine correctness by analyzing the file names of each target. The following shows examples of file names that conform to the expected conventions.
 \begin{itemize}
@@ -129,6 +139,10 @@ where \texttt{L} is the masker level.
 \texttt{fixed-level CRM silent intervals} specifies a fixed-level test where the subject responds using a colored number grid for each trial. Targets are identified by four (400ms, 300ms, 200ms, 100ms) silent intervals. 30 targets are randomly selected for each interval as well as 30 targets without = 5 * 30 = 150 targets = 150 trials
 \subsubsection{fixed-level free response all stimuli}
 \texttt{fixed-level free response all stimuli} specifies a fixed-level test where the tester enters a free response for each trial. All targets are played once. The tester may flag a trial using a checkbox. A flagged trial is replayed at the end.
+\subsubsection{fixed-level free response all stimuli audio recording}
+\texttt{fixed-level free response all stimuli audio recording} is equivalent to \texttt{fixed-level free response all stimuli} with the addition of each trial's audio being recorded using the system's active input device.
+\subsubsection{fixed-level free response predetermined stimuli audio recording}
+\texttt{fixed-level free response predetermined stimuli audio recording} is equivalent to \texttt{fixed-level free response all stimuli audio recording} except targets are presented in order according to the \texttt{targets} file.
 \subsubsection{fixed-level consonants}
 \texttt{fixed-level consonants} specifies a fixed-level test where the subject responds using a set of pictures for each trial. All targets are played \texttt{target repetitions} times in random order where no target will be played twice more than another at any point during the test.
 \subsubsection{fixed-level choose keywords all stimuli}
